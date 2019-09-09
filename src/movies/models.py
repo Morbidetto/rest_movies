@@ -17,7 +17,7 @@ class Movie(models.Model):
     country = models.TextField()
     awards = models.TextField()
     poster = models.TextField()
-    ratings = ArrayField(base_field=HStoreField())
+    ratings = ArrayField(base_field=HStoreField(), blank=True)
     metascore = models.CharField(max_length=SMALL_CHARFIELD_SIZE)
     imdbrating = models.FloatField()
     imdbvotes = models.IntegerField()
