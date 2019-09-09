@@ -3,6 +3,7 @@ from rest_framework import serializers
 from datetime import date
 from .models import Movie, Comment
 
+
 class CreateMovieSerializer(serializers.Serializer):
     title = serializers.CharField()
 
@@ -15,6 +16,7 @@ class MoviesSerializer(serializers.ModelSerializer):
 
 class CommentsSerializer(serializers.ModelSerializer):
     date = serializers.DateField(default=date.today())
+
     class Meta:
         model = Comment
         fields = '__all__'
@@ -27,7 +29,13 @@ class TopMoviesSerializer(serializers.Serializer):
     def create(self, validated_data):
         start_date = validated_data.pop("start_date")
         end_date = validated_data.pop("end_date")
-        movies = Movie.objects.annotate(total_comments=Count('comment', filter=Q(comment__date__range=(start_date, end_date)))).order_by('-total_comments')
+        movies = Movie.objects.annotate(
+            total_comments=Count(
+                'comment',
+                filter=Q(
+                    comment__date__range=(
+                        start_date,
+                        end_date)))).order_by('-total_comments')
         result_list = []
         current_rank = 1
         previous_comments = -1
@@ -42,5 +50,3 @@ class TopMoviesSerializer(serializers.Serializer):
             result_list.append(movie_dict)
             previous_comments = movie.total_comments
         return result_list
-
-

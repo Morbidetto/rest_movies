@@ -76,8 +76,7 @@ WSGI_APPLICATION = 'rest_movies.wsgi.application'
 
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
-    'PAGE_SIZE': 100
-}
+    'PAGE_SIZE': 100}
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
@@ -87,7 +86,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'postgres',
         'USER': 'postgres',
-        #'PASSWORD': '123',
+        # 'PASSWORD': '123',
         'HOST': 'db',
         'PORT': 5432,
     }

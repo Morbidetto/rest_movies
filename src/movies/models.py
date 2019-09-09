@@ -4,6 +4,7 @@ from django.contrib.postgres.fields import ArrayField, HStoreField
 SMALL_CHARFIELD_SIZE = 25
 MEDIUM_CHARFIELD_SIZE = 60
 
+
 class Movie(models.Model):
     title = models.TextField(unique=True)
     year = models.IntegerField()
@@ -33,4 +34,3 @@ class Comment(models.Model):
     movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
     comment = models.TextField()
     date = models.DateField()
-
